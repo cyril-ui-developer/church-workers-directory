@@ -1,10 +1,9 @@
-// import { InMemoryDbService } from 'angular-in-memory-web-api';
-// export class InMemoryDataService implements InMemoryDbService {
-//   createDb() {
- import { Worker } from './church.model';
+import { InMemoryDbService } from 'angular-in-memory-web-api';
 
-export const WORKERS: Worker[] = [{
-  
+export class InMemoryDataService implements InMemoryDbService {
+  createDb() {
+    let workers = [
+    {
 	"id": 1,
 	"firstname": "Cyril",
 	"lastname": "Ajieh",
@@ -65,6 +64,10 @@ export const WORKERS: Worker[] = [{
 	"joined": "11-29-2016"
 
 }];
+return {workers};
+  }
+}
+
   //   return {heroes};
   // }
 
