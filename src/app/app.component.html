@@ -1,0 +1,54 @@
+
+<main class="container">
+  <header><h2 class="text-center">Church Workers Directory</h2></header>
+  <section>
+    
+    <table class="table table-hover workers">
+      <thead>
+        <tr>
+          <th>S/N</th>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Service Unit</th>
+          <th>Details</th>
+          <th>Update</th>
+          <th>Delete</th>
+
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let worker of workers" [class.selected]="worker === selectedWorker">
+          <td>{{worker.id}}</td>
+          <td>{{worker.firstname}}</td>
+          <td>{{worker.lastname}}</td>
+          <td>{{worker.serviceUnit}}</td>
+          <td (click)="onSelectWorker(worker)"><button class="btn-primary" data-toggle="modal" data-target="#myModal"> Details</button></td>
+          <td>Update</td>
+          <td>Delete</td>
+        </tr>
+      </tbody>
+
+      
+    </table>
+    <button class="btn-primary" (click)="addWorker()">Add New Worker </button>
+ 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Worker's Detail</h4>
+      </div>
+      <div class="modal-body">
+        <app-detail [worker]="selectedWorker"></app-detail>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+      </div>
+    </div>
+  </div>
+</div>
+  </section>
+</main>

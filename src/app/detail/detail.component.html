@@ -1,0 +1,26 @@
+ <section *ngIf="worker">
+   <div>
+    <label>id: </label>{{worker.id}}
+    </div>
+    <h2>{{worker.firstname}} {{worker.lastname}}</h2>
+    <div>{{worker.gender}} </div>
+    <div>{{worker.address}} </div>
+    <div>{{worker.email}} </div>
+    <div>{{worker.phone}} </div>
+    <div>{{worker.birthday}} </div>
+    <div>{{worker.serviceUnit}} </div>
+    <div>{{worker.joined}} </div>
+  
+   </section>
+
+
+    <!--<section *ngIf="worker">
+      <h2>{{worker.firstname}} {{worker.lastname}} details!</h2>
+      <div>
+        <label>id: </label>{{worker.id}}
+      </div>
+      <div>
+        <label>Firstname: </label>
+        <input [(ngModel)]="worker.firstname" placeholder="name"/>
+      </div>
+    </section>-->
