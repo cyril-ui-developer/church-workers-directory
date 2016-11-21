@@ -13,16 +13,39 @@ export class ChurchService {
 
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private churchWorkersEndPonint = 'app/workers';  // URL to web api
+  private churchWorkersEndPoint = 'app/workers';  // URL to web api
 
   constructor(private http: Http) { }
 
   getWorkers(): Promise<Worker[]> {
-    return this.http.get(this.churchWorkersEndPonint)
+    return this.http.get(this.churchWorkersEndPoint)
                .toPromise()
                .then(response => response.json().data as Worker[])
                .catch(this.handleError);
   }
+
+  create(firstname: string, lastname: string, gender:string): Promise<Worker> {
+    return this.http
+      .post(this.churchWorkersEndPoint, JSON.stringify({firstname: firstname, lastname: lastname, gender:gender}), {headers: this.headers})
+      .toPromise()
+      .then(res => res.json().data)
+      .catch(this.handleError);
+  }
+
+  delete(id: number): Promise<void> {
+  const endPoint = `${this.churchWorkersEndPoint}/${id}`;
+  return this.http.delete(endPoint, {headers: this.headers})
+    .toPromise()
+    .then(() => null)
+    .catch(this.handleError);
+}
+  //  create(firstname: string): Promise<Worker> {
+  //   return this.http
+  //     .post(this.churchWorkersEndPoint, JSON.stringify({firstname: firstname}), {headers: this.headers})
+  //     .toPromise()
+  //     .then(res => res.json().data)
+  //     .catch(this.handleError);
+  // }
 
   private handleError(error: any): Promise<any> {
       console.error('An error occurred', error); // for demo purposes only

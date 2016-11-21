@@ -4,7 +4,7 @@ export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     let workers = [
     {
-	"id": 1,
+	"id": 1001,
 	"firstname": "Cyril",
 	"lastname": "Ajieh",
 	"gender": "M",
@@ -16,7 +16,7 @@ export class InMemoryDataService implements InMemoryDbService {
 	"joined": "11-19-2016"
 
 }, {
-	"id": 2,
+	"id": 1002,
 	"firstname": "Faith",
 	"lastname": "Ajieh",
 	"gender": "F",
@@ -28,7 +28,7 @@ export class InMemoryDataService implements InMemoryDbService {
 	"joined": "11-21-2016"
 
 }, {
-	"id": 3,
+	"id": 1003,
 	"firstname": "Meekness",
 	"lastname": "Cyril",
 	"gender": "M",
@@ -40,7 +40,7 @@ export class InMemoryDataService implements InMemoryDbService {
 	"joined": "11-19-2016"
 
 }, {
-	"id": 4,
+	"id": 1004,
 	"firstname": "Love",
 	"lastname": "Peter",
 	"gender": "F",
@@ -52,7 +52,7 @@ export class InMemoryDataService implements InMemoryDbService {
 	"joined": "11-22-2016"
 
 }, {
-	"id": 5,
+	"id": 1005,
 	"firstname": "Isaac",
 	"lastname": "Favor",
 	"gender": "M",
@@ -68,6 +68,5 @@ return {workers};
   }
 }
 
-  //   return {heroes};
-  // }
+
 
