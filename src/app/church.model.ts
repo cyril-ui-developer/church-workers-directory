@@ -1,4 +1,4 @@
-export class Worker {
+export interface Worker {
     "id": number;
 	"firstname": string;
 	"lastname": string;
@@ -7,6 +7,6 @@ export class Worker {
 	"phone": string;
 	"email": string;
 	"serviceUnit":string;
-	"birthday": string;
+	"birthday": Date;
 	"joined": string;
 }

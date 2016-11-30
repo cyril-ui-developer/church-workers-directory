@@ -3,13 +3,13 @@
     <label>id: </label>{{worker.id}}
     </div>
     <h2>{{worker.firstname}} {{worker.lastname}}</h2>
-    <div>{{worker.gender}} </div>
-    <div>{{worker.address}} </div>
-    <div>{{worker.email}} </div>
-    <div>{{worker.phone}} </div>
-    <div>{{worker.birthday}} </div>
-    <div>{{worker.serviceUnit}} </div>
-    <div>{{worker.joined}} </div>
+    <div>Gender: {{worker.gender}} </div>
+    <div>Address: {{worker.address}} </div>
+    <div>Email:{{worker.email}} </div>
+    <div>Phone:{{worker.phone}} </div>
+    <div>Birthday: {{worker.birthday | date:"MM-dd-yyyy"}} </div>
+    <div>Service Unit:{{worker.serviceUnit}} </div>
+    <div>Joined Date: {{worker.joined | date:"MM-dd-yyyy"}} </div>
   
    </section>
 

@@ -14,6 +14,7 @@ export class ChurchService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private churchWorkersEndPoint = 'app/workers';  // URL to web api
+  private timeInMs = Date.now();
 
   constructor(private http: Http) { }
 
@@ -23,10 +24,10 @@ export class ChurchService {
                .then(response => response.json().data as Worker[])
                .catch(this.handleError);
   }
-
-  create(firstname: string, lastname: string, gender:string): Promise<Worker> {
+  
+  create(firstname: string, lastname: string,gender:string, address:string,email:string,phone:string, serviceUnit:string, birthday:Date, joined:Date): Promise<Worker> {
     return this.http
-      .post(this.churchWorkersEndPoint, JSON.stringify({firstname: firstname, lastname: lastname, gender:gender}), {headers: this.headers})
+      .post(this.churchWorkersEndPoint, JSON.stringify({firstname: firstname, lastname: lastname,gender:gender, address:address, email:email, serviceUnit:serviceUnit,  phone:phone, birthday:birthday,joined: this.timeInMs}), {headers: this.headers})
       .toPromise()
       .then(res => res.json().data)
       .catch(this.handleError);

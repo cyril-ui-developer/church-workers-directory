@@ -29,21 +29,7 @@
       </tbody>    
     </table>
 </section >
-        <!--<label>Firstname:</label> <input #firstName />
-         <label>Lastname:</label> <input #lastName />
-       <button class="btn-primary" (click)="addWorker(lastName.value,lastName.value); firstName.value=''; lastName.value='';  "> Add</button>
-     -->
-      <!--<h2>{{worker.firstname}} {{worker.lastname}} details!</h2>
-      <div>
-        <label>id: </label>{{worker.id}}
-      </div>
-      <div>
-        <label>Firstname: </label>
-        <input [(ngModel)]="worker.firstname" placeholder="firstname"/>
-      </div>
-
-       <button class="btn-primary" (click)="addWorker()">Add New Worker </button>
- -->
+    
 <button class="btn btn-primary" data-toggle="modal" data-target="#addModal" >Add New Worker </button>
 <section>
 <!-- Details Modal -->
@@ -59,7 +45,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+     
       </div>
     </div>
   </div>
@@ -72,71 +58,81 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Worker's Detail</h4>
+        <h4 class="modal-title" id="myModalLabel">Create New Worker</h4>
       </div>
    
       <div class="modal-body">
-       <form class="form-horizontal">
+       <form class="form-horizontal" >
         <div class="form-group">
            <label for="inputFirstname" class="col-sm-2 control-label">Firstname</label>
         <div class="col-sm-10">
-           <input type="text" class="form-control"  #firstName placeholder="Enter Firstname"/>
+           <input type="text" class="form-control"  #firstName placeholder="Enter Firstname" requiredß/>
         </div>
       </div>
       <div class="form-group">
         <label for="inputLastname" class="col-sm-2 control-label">Lastname</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" #lastName placeholder="Enter Lastname" >  
+          <input type="text" class="form-control" #lastName placeholder="Enter Lastname" required>  
         </div>
       </div>
       <div class="form-group">
         <label for="inputGender" class="col-sm-2 control-label">Gender</label>
-        <div class="col-sm-10">
-          <input type="radio"  #gender  placeholder="Male" name="gender"  gender.value='Male' > Male 
-          <input type="radio" #gender   placeholder="Female"   name="gender" gender.value='Female'> Female 
+        <div class="col-sm-10" >
+        
+           <label>
+           <input type="radio" #genderMale  name="gen"   value="Male" (change)="genderFunc(genderMale)">  
+            Male  
+          </label>
+          <label>
+            <input type="radio" #genderFemale   name="gen" value="Female" (change)="genderFunc(genderFemale)">
+            Female
+          </label>
         </div>
       </div>
+    
        <div class="form-group">
         <label for="inputAddress" class="col-sm-2 control-label">Contact Address</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" #address placeholder="Enter Contact Address" >  
+          <input type="text" class="form-control" #address placeholder="Enter Contact Address" required>  
         </div>
       </div>
       <div class="form-group">
         <label for="inputEmail" class="col-sm-2 control-label">Email</label>
         <div class="col-sm-10">
-          <input type="email" class="form-control" #email placeholder="Enter Email Address" >  
+          <input type="email" class="form-control" #email placeholder="Enter Email Address" required>  
         </div>
       </div>
       <div class="form-group">
         <label for="inputPhone" class="col-sm-2 control-label">Phone</label>
         <div class="col-sm-10">
-          <input type="tel" class="form-control" #phone placeholder="Enter Phone Address" >  
+          <input type="tel" class="form-control" #phone placeholder="Enter Phone Address" required>  
         </div>
       </div>
       <div class="form-group">
         <label for="inputPhone" class="col-sm-2 control-label">Service Unit</label>
         <div class="col-sm-10">
-          <select class="form-control" #serviceUnit id="serviceunit">
-            <option>Choir</option>
-            <option>Prayers</option>
-            <option>Sanctuary</option>
-            <option>Children</option>
+        <select  class="form-control" #serviceUnit (change)="serviceUnitFunc(serviceUnit)" required>
+            <option disabled selected > Select your unit</option>
+             <option *ngFor="let unit of serviceUnits">{{unit.unitName}}</option>
           </select>
           </div>
+         </div>
+      <div class="form-group">
+        <label for="inputPhone" class="col-sm-2 control-label">Birthday</label>
+        <div class="col-sm-10">
+          <input type="date" class="form-control" #birthDay placeholder="Enter Birthday" required>  
+        </div>
+      </div>
+          <div class="modal-footer">
+        <input type="reset" value="Close" class="btn btn-default" data-dismiss="modal">
+        <input type="submit" value="Save Worker" class="btn btn-success" (click)="addWorker(firstName.value,lastName.value, address.value,email.value, phone.value, birthDay.value); firstName.value=''; lastName.value='';
+        address.value = '';email.value=''; phone.value=''; gender.value = ''; birthDay.value='';joined=''; "     
+        data-dismiss="modal">
       </div>
     </form>
-  <!--<div class="checkbox">
-    <label>
-      <input type="checkbox"> Check me out
-    </label>
-  </div>-->
   
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success" (click)="addWorker(lastName.value,lastName.value, gender.value); firstName.value=''; lastName.value='';  ">Save Worker</button>
-      </div>
+  
     </div>
   </div>
 </div>

@@ -9,33 +9,52 @@ import { ChurchService  } from './church.service';
 })
 export class AppComponent implements OnInit{
   title :string = 'app works!';
+  gender:string;
+  serviceUnit: string; 
+  serviceUnits :any = [{unitId:1, unitName:"Prayers"},{unitId:2, unitName:"Sunday School"},{unitId:2, unitName:"Children"}];
+  workers: Worker[];
+  selectedWorker: Worker;
 
-    workers: Worker[];
-    selectedWorker: Worker;
+  
+  constructor(private churchService: ChurchService ){
+  
+  }
 
-  constructor(
-    private churchService: ChurchService
-   // private router: Router) { }
-  ){}
   getWorkers(): void {
     this.churchService
         .getWorkers()
         .then(workers => this.workers = workers);
   }
 
-  addWorker(firstname: string,lastname: string, gender:string): void {
+
+  genderFunc(element: HTMLInputElement): void {
+        this.gender = element.value;        
+    }
+  
+  serviceUnitFunc(element: HTMLSelectElement):void{
+        this.serviceUnit = element.value;       
+ }     
+    
+  addWorker(firstname: string,lastname: string,address:string,email:string,phone:string, birthday:Date, joined:Date): void {
     firstname = firstname.trim();
     lastname = lastname.trim();
-    gender = gender.trim();
-    if (!firstname && !lastname && !gender) { return; }
-    this.churchService.create(firstname, lastname, gender)
+    address = address.trim();
+    email= email.trim();
+    phone = phone.trim();
+  
+   
+    if (!firstname && !lastname  && !this.gender && !address && !email && !phone && !this.serviceUnit  && !birthday) { 
+      return;
+     }
+    this.churchService.create(firstname, lastname, this.gender, address, email ,phone, this.serviceUnit ,birthday, joined)
       .then(worker => {
         this.workers.push(worker);
         this.selectedWorker = null;
       });
-      // worker.firstname = "";
-      // worker.lastname = "";
+    
   }
+
+
 
   deleteWorker(worker: Worker): void {
     this.churchService
@@ -46,31 +65,7 @@ export class AppComponent implements OnInit{
         });
   }
 
-  //  addWorker(firstname: string): void {
-  //   firstname = firstname.trim();
-  //   if (!firstname) { return; }
-  //   this.churchService.create(firstname)
-  //     .then(worker => {
-  //       this.workers.push(worker);
-  //       this.selectedWorker = null;
-  //     });
-  // }
 
-//  addWorker(): void {
-//     this.workers.push({
-// 	"id":6,
-// 	"firstname": "Faith2",
-// 	"lastname": "Ajieh2",
-// 	"gender": "F",
-// 	"address": "3908 SW Feather St., Bentonville, AR 72712",
-// 	"phone": "3001230000",
-// 	"email": "faith3@cyrilajieh.com",
-// 	"serviceUnit": "Sanctuary",
-// 	"birthday": "03-02-1993",
-// 	"joined": "11-21-2016"
-
-// });
-//   }
 
    ngOnInit(): void {
     this.getWorkers();
